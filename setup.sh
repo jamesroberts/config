@@ -4,7 +4,7 @@ function config {
     /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
 
-add_to_config_file() {
+function add_to_config_file {
     echo 'alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"' >> $1
     echo 'source "$HOME/.shell_rc"' >> $1
 }
