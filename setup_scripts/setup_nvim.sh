@@ -47,4 +47,10 @@ echo "JetBrainsMono Nerd Font installed"
 
 # sudo ln -s ~/dotfiles/nvim/* ~/.config/nvim/
 
+# Backup old config
+mv ~/.config/nvim ~/.config/nvim.bak
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+mv ~/.cache/nvim ~/.cache/nvim.bak
+
 echo "Neovim setup successfully"
