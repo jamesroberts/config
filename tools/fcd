@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Fuzzy find directories and cd to the selection
+
+pkgs=`find ~/workplace/ -mindepth 1 -maxdepth 3 -type d | grep src/`
+home=`find ~/ -mindepth 1 -maxdepth 1 -type d`
+
+printf "$pkgs\n$home" | fzf

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Fuzzy find files and open the selection in neovim
+
+files=`find -type f \
+    -not -path '*/\.git/*' \
+    -not -path '*/\*mypy_cache/*' \
+    -not -path '*/\.mypy_cache/*' \
+    -not -path '*/__pycache__/*' \
+    -not -path '*/node_modules/*' \
+    -not -path '*/*.bak*' \
+    -not -path '*/*.zip*' \
+    -not -path '*/dist/*' \
+    -not -path '*/doc/*'
+`
+
+selection=`printf "%s\n" "${files[@]}" | fzf`
+
+if [ -z "$selection" ]
+then
+    echo "File not chosen"
+else
+    nvim $selection
+fi
+
