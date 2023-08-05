@@ -5,3 +5,4 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 alias fcd='cd `~/tools/fcd`'
 alias ff='~/tools/ff'
+alias ll='exa -la'

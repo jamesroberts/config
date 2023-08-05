@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# Fuzzy find directories and cd to the selection
+# Fuzzy find directories and outputs the selection
 
-pkgs=`find ~/workplace/ -mindepth 1 -maxdepth 3 -type d | grep src/`
+pkgs=`find ~/workplace/ -mindepth 1 -maxdepth 3 -type d 2>/dev/null | grep src/`
+fun=`find ~/fun -mindepth 1 -maxdepth 3 -type d 2>/dev/null`
 home=`find ~/ -mindepth 1 -maxdepth 1 -type d`
 
-printf "$pkgs\n$home" | fzf
+printf "$pkgs\n$fun\n$home" | fzf

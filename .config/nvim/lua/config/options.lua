@@ -5,3 +5,6 @@ local opt = vim.opt
 
 opt.swapfile = false
 opt.backup = false
+
+opt.tabstop = 4 -- Number of spaces tabs count for
+opt.shiftwidth = 4 -- Size of an indent
