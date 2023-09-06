@@ -10,10 +10,17 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 	brew install fontconfig
 else
 	rm -f nvim.appimage
+	sudo rm -rf /squashfs-root/
+
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 
 	chmod u+x nvim.appimage
-	sudo ln -s ~/nvim.appimage /usr/bin/nvim
+
+	./nvim.appimage --appimage-extract
+	./squashfs-root/AppRun --version
+
+	sudo mv -f squashfs-root /
+	sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 
 	if command -v apt-get >/dev/null; then
 		sudo apt-get install ripgrep
@@ -26,31 +33,21 @@ else
 fi
 
 mkdir -p ~/.config/nvim/
-# mkdir -p ~/.vim/undodir
 
 echo "Neovim installed"
 
 echo "Installing Nerd Font"
 mkdir -p ~/.local/share/fonts
-rm JetBrainsMono.zip
+rm -f JetBrainsMono.zip
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/JetBrainsMono.zip"
 unzip JetBrainsMono.zip -d ~/.local/share/fonts
+rm -f JetBrainsMono.zip
 
 fc-cache -f -v
 
 echo "JetBrainsMono Nerd Font installed"
 
-# git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-# ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-# echo "Package manager setup"
-
-# sudo ln -s ~/dotfiles/nvim/* ~/.config/nvim/
-
-# Backup old config
-mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
-mv ~/.local/state/nvim ~/.local/state/nvim.bak
-mv ~/.cache/nvim ~/.cache/nvim.bak
+echo "Installing NVM..."
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
 echo "Neovim setup successfully"
