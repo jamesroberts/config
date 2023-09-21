@@ -1,8 +1,20 @@
 export EDITOR='nvim'
 
-alias vim='nvim'
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
+# Tool aliases
+alias vim='nvim'
 alias fcd='cd `~/tools/fcd`'
 alias ff='~/tools/ff'
 alias ll='exa -la'
+
+# Git aliases
+alias gs='git status'
+alias gf='git fetch'
+alias ga='git add'
+alias gl='git log'
+alias glo='git log --oneline'
+alias gc='git commit'
+alias gca='git commit --amend'
+alias gp='git fetch && git pull'
+alias gpr='git fetch && git pull --rebase'
