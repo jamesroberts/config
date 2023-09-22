@@ -10,6 +10,8 @@ alias ll='exa -la'
 
 # Git aliases
 alias gs='git status'
+alias gd='git diff'
+alias gg='git grep'
 alias gf='git fetch'
 alias ga='git add'
 alias gl='git log'
