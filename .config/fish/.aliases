@@ -1,11 +1,17 @@
-export EDITOR='nvim'
-alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+# Non OS specific aliases
+
+alias git='__fish_git'
+alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # Tool aliases
+alias vi='nvim'
 alias vim='nvim'
 alias fcd='cd `~/tools/fcd`'
 alias ff='~/tools/ff'
 alias ll='exa -la'
+alias md5='openssl md5'
+alias sha1='openssl sha1'
+alias sha256='openssl sha256'
 
 # Git aliases
 alias gs='git status'
