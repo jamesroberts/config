@@ -26,9 +26,12 @@ echo "Installing rust based tools..."
 cargo install exa mdcat bat skim tokei just navi fd-find
 
 if command -v brew >/dev/null; then
+    brew install tmux
     brew install the_silver_searcher
 elif command -v apt-get >/dev/null; then
+    sudo apt-get install tmux
     sudo apt-get install silversearcher-ag
 elif command -v yum >/dev/null; then
+    sudo yum install tmux
     sudo yum install the_silver_searcher
 fi
