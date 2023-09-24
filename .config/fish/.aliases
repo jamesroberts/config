@@ -1,13 +1,13 @@
 # Non OS specific aliases
 
-alias git='__fish_git'
-alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # Tool aliases
 alias vi='nvim'
 alias vim='nvim'
-alias fcd='cd `~/tools/fcd`'
+alias gvim='~/tools/gvim'
 alias ff='~/tools/ff'
+alias fcd='cd $(~/tools/fcd)'
 alias ll='exa -la'
 alias md5='openssl md5'
 alias sha1='openssl sha1'

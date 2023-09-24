@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+set -e
+
+file_and_line_num=$(sk --ansi -i -c 'ag --color "{}"' --preview "~/tools/preview.sh {}" | cut -d: -f1,2 | sed 's#\(.*\):\(.*\)#+\2 \1#')
+if [ -z "$file_and_line_num" ]
+then
+    exit
+else
+    nvim $file_and_line_num
+fi

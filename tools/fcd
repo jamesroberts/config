@@ -6,4 +6,5 @@ pkgs=`find ~/workplace/ -mindepth 1 -maxdepth 3 -type d 2>/dev/null | grep src/`
 fun=`find ~/fun -mindepth 1 -maxdepth 3 -type d 2>/dev/null`
 home=`find ~/ -mindepth 1 -maxdepth 1 -type d`
 
-printf "$pkgs\n$fun\n$home" | fzf
+# printf "$pkgs\n$fun\n$home" | fzf
+sk -i -c 'fd --type directory --type empty "{}" ~/'

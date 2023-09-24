@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 set -e
 
 cd ~
@@ -46,8 +48,5 @@ rm -f JetBrainsMono.zip
 fc-cache -f -v
 
 echo "JetBrainsMono Nerd Font installed"
-
-echo "Installing NVM..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
 echo "Neovim setup successfully"
