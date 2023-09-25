@@ -2,19 +2,19 @@
 
 # Fuzzy find files and open the selection in neovim
 
-files=`find -type f \
-    -not -path '*/\.git/*' \
-    -not -path '*/\*mypy_cache/*' \
-    -not -path '*/\.mypy_cache/*' \
-    -not -path '*/__pycache__/*' \
-    -not -path '*/node_modules/*' \
-    -not -path '*/*.bak*' \
-    -not -path '*/*.zip*' \
-    -not -path '*/dist/*' \
-    -not -path '*/doc/*'
+files=`fd --type file \
+    --exclude .git \
+    --exclude mypy_cache \
+    --exclude mypy_cache \
+    --exclude __pycache__ \
+    --exclude node_modules \
+    --exclude *.bak \
+    --exclude *.zip \
+    --exclude dist \
+    --exclude doc
 `
 
-selection=`printf "%s\n" "${files[@]}" | fzf`
+selection=`printf "%s\n" "${files[@]}" | sk`
 
 if [ -z "$selection" ]
 then

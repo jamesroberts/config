@@ -23,7 +23,7 @@ curl https://sh.rustup.rs -sSf | sh
 source "$HOME/.cargo/env"
 
 echo "Installing rust based tools..."
-cargo install exa mdcat bat skim tokei just navi fd-find
+cargo install eza mdcat bat skim tokei just navi fd-find
 
 if command -v brew >/dev/null; then
     brew install tmux

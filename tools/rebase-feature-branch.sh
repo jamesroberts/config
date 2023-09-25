@@ -1,4 +1,6 @@
-commit-this-feature-branch() {
+#!/usr/bin/env bash
+
+rebase-this-feature-branch_on_to() {
 	main_branch=$1
 	feature_branch=$(git rev-parse --abbrev-ref HEAD)
 	echo "Rebasing '$feature_branch' on to '$main_branch'"
@@ -12,4 +14,5 @@ commit-this-feature-branch() {
 	git rebase $branch
 }
 
-commit-this-feature-branch $1
+rebase-this-feature-branch_on_to $1
+
