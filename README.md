@@ -27,10 +27,11 @@ If any files fail to checkout after setup, fix with:
 config checkout --force
 ```
 
-On a new machine, setup editor and dependencies:
+On a new machine, setup shell, editor and dependencies:
 
 ```bash
 ./setup_scripts/setup_fish.sh
+./setup_scripts/fisher.sh
 ./setup_scripts/setup_nvim.sh
 ./setup_scripts/setup_deps.sh
 ```

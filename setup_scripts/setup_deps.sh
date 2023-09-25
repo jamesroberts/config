@@ -1,18 +1,6 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 set -e
-
-echo "Setting Node Version to 18..."
-echo "Sourcing nvm from ~/.nvm"
-if [ -f ~/.nvm/nvm.sh ]; then
-    . ~/.nvm/nvm.sh
-    nvm install 18
-    nvm use 18
-else
-    echo "Error: Please install nvm"
-    echo -e "Hint: \nRun > curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash"
-    exit
-fi
 
 if command -v brew >/dev/null; then
     brew install tmux
