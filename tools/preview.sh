@@ -63,8 +63,16 @@ elif command -v bat > /dev/null; then
   BATNAME="bat"
 fi
 
+OFFSET=$(($LINES / 2))
+LOWER_RANGE=$(($CENTER-$OFFSET))
+UPPER_RANGE=$(($CENTER+$OFFSET))
+
+if [ "$LOWER_RANGE" -lt 0 ]; then
+    LOWER_RANGE=0
+fi
+
 if [ -z "$FZF_PREVIEW_COMMAND" ] && [ "${BATNAME:+x}" ]; then
-  ${BATNAME} --style="${BAT_STYLE:-numbers}" --color=always --pager=never \
+    ${BATNAME} --style="${BAT_STYLE:-numbers}" --color=always --pager=never --line-range $LOWER_RANGE:$UPPER_RANGE \
       --highlight-line=$CENTER -- "$FILE"
   exit $?
 fi

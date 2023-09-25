@@ -2,8 +2,13 @@
 
 set -e
 
-echo "Note: This script assumes you have fish already installed!"
+echo "Install fish following the instructions here: https://fishshell.com/"
 
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+echo "
+Install the fish plugin manager by running:
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+"
 
-fisher install jorgebucaran/nvm.fish
+echo "Install the following dependencies via fisher by running the following:
+    fisher install jorgebucaran/nvm.fish
+"
