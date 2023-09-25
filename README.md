@@ -30,6 +30,7 @@ config checkout --force
 On a new machine, setup editor and dependencies:
 
 ```bash
+./setup_scripts/setup_fish.sh
 ./setup_scripts/setup_nvim.sh
 ./setup_scripts/setup_deps.sh
 ```
