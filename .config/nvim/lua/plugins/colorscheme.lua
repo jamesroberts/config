@@ -6,11 +6,12 @@ return {
     opts = {
       style = "night",
       on_highlights = function(hl, c)
-        hl.TelescopeBorder = {
-          bg = c.bg_dark,
-          fg = c.dark5,
-        }
+        hl.WinSeparator = { bg = c._bg, fg = c._bg }
       end,
+      on_colors = function(colors)
+        colors._bg = colors.bg
+        colors.bg = colors.bg_dark
+      end
     },
   },
 }
