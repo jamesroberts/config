@@ -7,7 +7,6 @@ local configure = function()
       ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim',
         'bash', 'json' },
       auto_install = false,
-
       highlight = { enable = true },
       indent = { enable = true },
       incremental_selection = {

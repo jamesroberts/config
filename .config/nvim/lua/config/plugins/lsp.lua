@@ -73,7 +73,7 @@ return {
       'folke/neodev.nvim',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      { 'j-hui/fidget.nvim',        tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
       { 'simrat39/rust-tools.nvim', opts = {} },
     },
     config = configure
