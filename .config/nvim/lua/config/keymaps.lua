@@ -68,11 +68,11 @@ map("i", ";", ";<c-g>u")
 
 -- Quickfix list
 map("n", "<leader>qf", "<cmd>copen<cr>", { desc = "Quickfix List" })
-map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
-map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
+map("n", "<leader>qfn", vim.cmd.cprev, { desc = "Previous quickfix" })
+map("n", "<leader>qfp", vim.cmd.cnext, { desc = "Next quickfix" })
 
 -- Formatting
-map({ "n", "v" }, "<leader>cf", "<cmd>Format<cr>", { desc = "Format" })
+-- map({ "n", "v" }, "<leader>cf", "<cmd>Format<cr>", { desc = "Format" })
 
 -- Diagnostics
 local diagnostic_goto = function(next, severity)
