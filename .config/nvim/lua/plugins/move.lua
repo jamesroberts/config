@@ -1,5 +1,0 @@
-return {
-    {
-        "fedepujol/move.nvim"
-    }
-}

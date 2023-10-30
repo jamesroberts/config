@@ -1,7 +1,7 @@
 return {
   {
     "folke/tokyonight.nvim",
-    lazy = true,
+    lazy = false,
     priority = 1000,
     opts = {
       style = "night",
@@ -13,5 +13,11 @@ return {
         colors.bg = colors.bg_dark
       end
     },
-  },
+    config = function()
+      vim.cmd [[colorscheme tokyonight-night]]
+      require('lualine').setup({
+        options = { theme = 'tokyonight' }
+      })
+    end,
+  }
 }
