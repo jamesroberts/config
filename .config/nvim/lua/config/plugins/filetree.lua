@@ -1,81 +1,49 @@
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+local map = vim.keymap.set
+map("n", "<leader>fe", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle File Tree" })
+
+-- Ensure NvimTree is closed if its the last buffer open
+vim.api.nvim_create_autocmd("QuitPre", {
+    callback = function()
+        local tree_wins = {}
+        local floating_wins = {}
+        local wins = vim.api.nvim_list_wins()
+        for _, w in ipairs(wins) do
+            local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
+            if bufname:match("NvimTree_") ~= nil then
+                table.insert(tree_wins, w)
+            end
+            if vim.api.nvim_win_get_config(w).relative ~= '' then
+                table.insert(floating_wins, w)
+            end
+        end
+        if 1 == #wins - #floating_wins - #tree_wins then
+            -- Should quit, so we close all invalid windows.
+            for _, w in ipairs(tree_wins) do
+                vim.api.nvim_win_close(w, true)
+            end
+        end
+    end
+})
 
 return {
-  "nvim-neo-tree/neo-tree.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",
-    "MunifTanjim/nui.nvim",
-    "3rd/image.nvim",
-  },
-  branch = "v3.x",
-  cmd = "Neotree",
-  keys = {
-    {
-      "<leader>fe",
-      function()
-        require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-      end,
-      desc = "Explorer NeoTree (cwd)",
+    "nvim-tree/nvim-tree.lua",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
     },
-    {
-      "<leader>ge",
-      function()
-        require("neo-tree.command").execute({ source = "git_status", toggle = true })
-      end,
-      desc = "Git explorer",
-    },
-    {
-      "<leader>be",
-      function()
-        require("neo-tree.command").execute({ source = "buffers", toggle = true })
-      end,
-      desc = "Buffer explorer",
-    },
-  },
-  deactivate = function()
-    vim.cmd([[Neotree close]])
-  end,
-  init = function()
-    if vim.fn.argc(-1) == 1 then
-      local stat = vim.loop.fs_stat(vim.fn.argv(0))
-      if stat and stat.type == "directory" then
-        require("neo-tree")
-      end
-    end
-  end,
-  opts = {
-    sources = { "filesystem", "buffers", "git_status", "document_symbols" },
-    open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
-    filesystem = {
-      bind_to_cwd = false,
-      follow_current_file = { enabled = true },
-      use_libuv_file_watcher = true,
-      filtered_items = {
-        visible = true,
-        show_hidden_count = true,
-        hide_dotfiles = false,
-        hide_gitignored = true,
-        hide_by_name = {
-          '.git',
-          '.DS_Store',
-          'thumbs.db',
+    opts = {
+        sort_by = "case_sensitive",
+        view = {
+            width = 30,
         },
-        never_show = {},
-      },
-    },
-    window = {
-      mappings = {
-        ["<space>"] = "none",
-      },
-    },
-    default_component_configs = {
-      indent = {
-        with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-        expander_collapsed = "",
-        expander_expanded = "",
-        expander_highlight = "NeoTreeExpander",
-      },
-    },
-  },
+        renderer = {
+            highlight_git = true,
+            group_empty = true,
+            icons = {
+                git_placement = "after"
+            }
+        },
+    }
 }
