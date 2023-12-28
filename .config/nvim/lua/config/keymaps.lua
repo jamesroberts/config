@@ -3,74 +3,95 @@ vim.g.maplocalleader = ' '
 
 local map = vim.keymap.set
 
--- Navigation
-map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true, desc = "Move viewport up" })
-map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true, desc = "Move viewport down" })
-map("n", "<Tab>", ":bnext<CR>", { noremap = true, silent = true, desc = "Switch to next buffer" })
-map("n", "<S-Tab>", ":bprev<CR>", { noremap = true, silent = true, desc = "Switch to prev buffer" })
+-- navigation
+map({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
+map("n", "<c-u>", "<c-u>zz", { noremap = true, silent = true, desc = "move viewport up" })
+map("n", "<c-d>", "<c-d>zz", { noremap = true, silent = true, desc = "move viewport down" })
+map("n", "<tab>", ":bnext<cr>", { noremap = true, silent = true, desc = "switch to next buffer" })
+map("n", "<s-tab>", ":bprev<cr>", { noremap = true, silent = true, desc = "switch to prev buffer" })
+map("n", "<leader>x<tab>", ":bd<cr>", { noremap = true, silent = true, desc = "close current buffer" })
 
-map("n", "gd", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
+-- move lines up and down
+map("v", "k", ":m '<-2<cr>gv=gv", { noremap = true, silent = true, desc = "switch highlighted text up" })
+map("v", "j", ":m '>+1<cr>gv=gv", { noremap = true, silent = true, desc = "switch highlighted text down" })
 
--- Move lines up and down
-map("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Switch highlighted text up" })
-map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Switch highlighted text down" })
+-- Start and end of line shortcuts
+map({'n', 'x', 'o'}, 'H', '^')
+map({'n', 'x', 'o'}, 'L', 'g_')
 
--- Better indenting
+-- easy way to get back to normal mode from home row
+map("i", "kj", "<esc>") -- kj simulates esc
+map("i", "jk", "<esc>") -- jk simulates esc
+
+-- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- Files
-map("n", "<leader>fx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make the current file executable" })
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+-- files
+map("n", "<leader>fx", "<cmd>!chmod +x %<cr>", { silent = true, desc = "make the current file executable" })
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "new file" })
 
--- Terminal
-map("n", "<leader>tt", vim.cmd.terminal, { noremap = true, silent = true, desc = "Start Terminal" })
-map("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "Escape Terminal" })
+-- terminal
+map("n", "<leader>tt", vim.cmd.terminal, { noremap = true, silent = true, desc = "start terminal" })
+map("t", "<esc>", "<c-\\><c-n>", { noremap = true, silent = true, desc = "escape terminal" })
 
--- Better up/down
+-- lsp
+map("n", "gd", vim.lsp.buf.definition, { noremap = true, silent = true, desc = "go to definition" })
+
+-- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map({ "n", "x" }, "<down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map({ "n", "x" }, "<up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
--- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
+-- move to window using the <ctrl> hjkl keys
+map("n", "<c-h>", "<c-w>h", { desc = "go to left window", remap = true })
+map("n", "<c-j>", "<c-w>j", { desc = "go to lower window", remap = true })
+map("n", "<c-k>", "<c-w>k", { desc = "go to upper window", remap = true })
+map("n", "<c-l>", "<c-w>l", { desc = "go to right window", remap = true })
 
--- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+-- resize window using <ctrl> arrow keys
+map("n", "<c-up>", "<cmd>resize +2<cr>", { desc = "increase window height" })
+map("n", "<c-down>", "<cmd>resize -2<cr>", { desc = "decrease window height" })
+map("n", "<c-left>", "<cmd>vertical resize -2<cr>", { desc = "decrease window width" })
+map("n", "<c-right>", "<cmd>vertical resize +2<cr>", { desc = "increase window width" })
 
--- Clear search with <esc>
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+-- clear search with <esc>
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "escape and clear hlsearch" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
-map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev search result" })
-map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map("n", "n", "'nn'[v:searchforward].'zv'", { expr = true, desc = "next search result" })
+map("x", "n", "'nn'[v:searchforward]", { expr = true, desc = "next search result" })
+map("o", "n", "'nn'[v:searchforward]", { expr = true, desc = "next search result" })
+map("n", "n", "'nn'[v:searchforward].'zv'", { expr = true, desc = "prev search result" })
+map("x", "n", "'nn'[v:searchforward]", { expr = true, desc = "prev search result" })
+map("o", "n", "'nn'[v:searchforward]", { expr = true, desc = "prev search result" })
 
--- Add undo break-points
+-- add undo break-points
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
--- Quickfix list
-map("n", "<leader>qf", "<cmd>copen<cr>", { desc = "Quickfix List" })
-map("n", "<leader>qfn", vim.cmd.cprev, { desc = "Previous quickfix" })
-map("n", "<leader>qfp", vim.cmd.cnext, { desc = "Next quickfix" })
+-- quickfix list
+map("n", "<leader>qf", "<cmd>copen<cr>", { desc = "quickfix list" })
+map("n", "<leader>qfn", vim.cmd.cprev, { desc = "previous quickfix" })
+map("n", "<leader>qfp", vim.cmd.cnext, { desc = "next quickfix" })
 
--- Formatting
--- map({ "n", "v" }, "<leader>cf", "<cmd>Format<cr>", { desc = "Format" })
+-- formatting
+map({ "n", "v" }, "<leader>cf", "<cmd>format<cr>", { desc = "format" })
 
--- Diagnostics
+-- abbrevs
+vim.cmd("cnoreabbrev w! w!")
+vim.cmd("cnoreabbrev q! q!")
+vim.cmd("cnoreabbrev qall! qall!")
+vim.cmd("cnoreabbrev wq wq")
+vim.cmd("cnoreabbrev wa wa")
+vim.cmd("cnoreabbrev wq wq")
+vim.cmd("cnoreabbrev wq wq")
+vim.cmd("cnoreabbrev w w")
+vim.cmd("cnoreabbrev q q")
+
+-- diagnostics
 local diagnostic_goto = function(next, severity)
     local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
     severity = severity and vim.diagnostic.severity[severity] or nil
@@ -78,40 +99,35 @@ local diagnostic_goto = function(next, severity)
         go({ severity = severity })
     end
 end
-map("n", "<leader>id", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
-map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
-map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
-map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+map("n", "<leader>id", vim.diagnostic.open_float, { desc = "line diagnostics" })
+map("n", "]d", diagnostic_goto(true), { desc = "next diagnostic" })
+map("n", "[d", diagnostic_goto(false), { desc = "prev diagnostic" })
+map("n", "]e", diagnostic_goto(true, "error"), { desc = "next error" })
+map("n", "[e", diagnostic_goto(false, "error"), { desc = "prev error" })
+map("n", "]w", diagnostic_goto(true, "warn"), { desc = "next warning" })
+map("n", "[w", diagnostic_goto(false, "warn"), { desc = "prev warning" })
 
--- Toggle options
+-- toggle options
 if vim.lsp.inlay_hint then
-    map("n", "<leader>th", function() vim.lsp.inlay_hint(0, nil) end, { desc = "Toggle Inlay Hints" })
+    map("n", "<leader>th", function() vim.lsp.inlay_hint(0, nil) end, { desc = "toggle inlay hints" })
 end
 
--- Windows
-map("n", "<leader>w-", "<C-W>s", { desc = "Split window below", remap = true })
-map("n", "<leader>w|", "<C-W>v", { desc = "Split window right", remap = true })
-map("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
+-- windows
+map("n", "<leader>w-", "<c-w>s", { desc = "split window below", remap = true })
+map("n", "<leader>w|", "<c-w>v", { desc = "split window right", remap = true })
+map("n", "<leader>-", "<c-w>s", { desc = "split window below", remap = true })
+map("n", "<leader>|", "<c-w>v", { desc = "split window right", remap = true })
 
--- Tabs
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<S-tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
--- Quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
+-- quit
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "quit all" })
 
 -- document existing key chains
 require('which-key').register {
-    ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-    ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-    ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-    ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-    ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-    ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-    ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+    ['<leader>c'] = { name = '[c]ode', _ = 'which_key_ignore' },
+    ['<leader>d'] = { name = '[d]ocument', _ = 'which_key_ignore' },
+    ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
+    ['<leader>h'] = { name = 'more git', _ = 'which_key_ignore' },
+    ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
+    ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
+    ['<leader>w'] = { name = '[w]orkspace', _ = 'which_key_ignore' },
 }

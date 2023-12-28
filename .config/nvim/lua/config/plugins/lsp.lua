@@ -71,9 +71,9 @@ return {
         'neovim/nvim-lspconfig',
         dependencies = {
             'folke/neodev.nvim',
-            'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
-            { 'j-hui/fidget.nvim',        tag = 'legacy', opts = {} },
+            { 'williamboman/mason.nvim',  config = true },
+            { 'j-hui/fidget.nvim',        tag = 'legacy',      opts = {} },
             { 'simrat39/rust-tools.nvim', opts = {} },
         },
         config = configure,

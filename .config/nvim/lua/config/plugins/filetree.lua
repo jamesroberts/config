@@ -38,6 +38,9 @@ return {
         view = {
             width = 30,
         },
+        filters = {
+            dotfiles = false,
+        },
         renderer = {
             highlight_git = true,
             group_empty = true,
