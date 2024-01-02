@@ -5,7 +5,20 @@ local configure = function()
     vim.defer_fn(function()
         require('nvim-treesitter.configs').setup {
             ensure_installed = {
-                'c', 'cpp', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'json'
+                'c',
+                'cpp',
+                'lua',
+                'python',
+                'rust',
+                'tsx',
+                'javascript',
+                'typescript',
+                'vimdoc',
+                'vim',
+                'bash',
+                'json',
+                'java',
+                'kotlin'
             },
             auto_install = false,
             highlight = { enable = true },
