@@ -12,8 +12,8 @@ map("n", "<s-tab>", ":bprev<cr>", { noremap = true, silent = true, desc = "switc
 map("n", "<leader>x<tab>", ":bd<cr>", { noremap = true, silent = true, desc = "close current buffer" })
 
 -- move lines up and down
-map("v", "k", ":m '<-2<cr>gv=gv", { noremap = true, silent = true, desc = "switch highlighted text up" })
-map("v", "j", ":m '>+1<cr>gv=gv", { noremap = true, silent = true, desc = "switch highlighted text down" })
+map("v", "K", ":m '<-2<cr>gv=gv", { noremap = true, silent = true, desc = "switch highlighted text up" })
+map("v", "J", ":m '>+1<cr>gv=gv", { noremap = true, silent = true, desc = "switch highlighted text down" })
 
 -- Start and end of line shortcuts
 map({'n', 'x', 'o'}, 'H', '^')
