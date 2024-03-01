@@ -1,72 +1,116 @@
--- [[ Options ]]
--- See `:help vim.o`
+-- [[ Setting options ]]
+-- See `:help vim.opt`
+-- For more options, you can see `:help option-list`
 
--- Set highlight on search
-vim.o.hlsearch = false
+-- Make relative line numbers the default
+vim.opt.relativenumber = true
 
--- Make line numbers default
-vim.wo.number = true
+-- Enable mouse mode, can be useful for resizing splits for example!
+vim.opt.mouse = 'a'
 
--- Enable mouse mode
-vim.o.mouse = 'a'
+-- Don't show the mode, since it's already in status line
+vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
+--  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+vim.opt.undofile = true
+vim.o.undolevels = 10000
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Highlight on search
+vim.opt.hlsearch = true
+
+-- Keep signcolumn on by default
+vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Sets how neovim will display certain whitespace in the editor.
+--  See :help 'list'
+--  and :help 'listchars'
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Preview substitutions live, as you type
+vim.opt.inccommand = 'split'
+
+-- Show which line your cursor is on
+vim.opt.cursorline = true
+
+-- Number of screen lines to keep for context when scrolling
+vim.opt.scrolloff = 10
+
+-- Number of coloumns to keep for context when side scrolling
+vim.o.sidescrolloff = 10
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menu,menuone,noselect'
+vim.opt.completeopt = 'menu,menuone,noselect'
+
+-- 24-bit colour
 vim.o.termguicolors = true
+
+-- Disable swapfiles and backup files
 vim.o.swapfile = false
 vim.o.backup = false
-vim.o.tabstop = 4      -- Number of spaces tabs count for
-vim.o.shiftwidth = 4   -- Size of an indent
-vim.o.conceallevel = 3 -- Hide * markup for bold and italic
-vim.o.expandtab = true -- Use spaces instead of tabs
--- vim.o.formatoptions = "jcroqlnt" -- tcqj
+
+ -- Use spaces instead of tabs
+vim.o.expandtab = true
+
+-- Number of spaces that replace a tab
+vim.o.tabstop = 4
+
+-- Indent size in spaces
+vim.o.shiftwidth = 4
+
+ -- Insert indents automatically
+vim.o.smartindent = true
+
+ -- Hide * markup for bold and italic
+vim.o.conceallevel = 3
+
+-- Grep options
 vim.o.grepformat = "%f:%l:%c:%m"
 vim.o.grepprg = "rg --vimgrep"
-vim.o.inccommand = "nosplit" -- preview incremental substitute
+
+-- Global status line
 vim.o.laststatus = 3         -- global statusline
-vim.o.list = true            -- Show some invisible characters (tabs...
-vim.o.mouse = "a"            -- Enable mouse mode
-vim.o.pumblend = 10          -- Popup blend
-vim.o.pumheight = 10         -- Maximum number of entries in a popup
-vim.o.relativenumber = true  -- Relative line numbers
-vim.o.scrolloff = 8          -- Lines of context
--- vim.o.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
--- vim.o.shiftround = true      -- Round indent
--- vim.o.shortmess:append({ W = true, I = true, c = true, C = true })
-vim.o.showmode = false   -- Dont show mode since we have a statusline
-vim.o.sidescrolloff = 8  -- Columns of context
-vim.o.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-vim.o.smartindent = true -- Insert indents automatically
-vim.o.splitbelow = true  -- Put new windows below current
-vim.o.splitkeep = "screen"
-vim.o.splitright = true  -- Put new windows right of current
-vim.o.timeoutlen = 300
-vim.o.undofile = true
-vim.o.undolevels = 10000
-vim.o.virtualedit = "block"          -- Allow cursor to move where there is no text in visual block mode
-vim.o.wildmode = "longest:full,full" -- Command-line completion mode
-vim.o.winminwidth = 5                -- Minimum window width
-vim.o.wrap = false                   -- Disable line wrap
+
+-- Popup menu options
+vim.o.pumblend = 10
+vim.o.pumheight = 15
+
+-- Allow cursor to move where there is no text in visual block mode
+vim.o.virtualedit = "block"
+
+-- Command-line completion mode
+vim.o.wildmode = "longest:full,full"
+
+-- Minimum window width
+vim.o.winminwidth = 5
+
+-- Disable line wrap
+vim.o.wrap = false
+
+-- Set color column at 80 cols
 vim.o.colorcolumn = "80"
 
+-- Enable smmoth scroll if available
 if vim.fn.has("nvim-0.10") == 1 then
     vim.o.smoothscroll = true
 end
