@@ -74,7 +74,7 @@ map("n", "<leader>qfn", vim.cmd.cprev, { desc = "Previous quickfix" })
 map("n", "<leader>qfp", vim.cmd.cnext, { desc = "Next quickfix" })
 
 -- Formatting
-map({ "n", "v" }, "<leader>cf", "<cmd>Format<cr>", { desc = "Format" })
+map({ "n", "v" }, "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
 
 -- Abbrevs
 vim.cmd("cnoreabbrev W! w!")

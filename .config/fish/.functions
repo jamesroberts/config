@@ -3,7 +3,7 @@ function fish_title
 end
 
 function rebase-this-feature-branch-on-to --description="Rebases THIS branch on to a specified branch"
-	set main_branch $1
+	set main_branch mainline
 	set feature_branch (git rev-parse --abbrev-ref HEAD)
 	echo "Rebasing '$feature_branch' on to '$main_branch'"
 	git checkout $main_branch

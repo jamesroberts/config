@@ -2,7 +2,8 @@
 -- See `:help vim.opt`
 -- For more options, you can see `:help option-list`
 
--- Make relative line numbers the default
+-- Make relative line numbers the default, but show the current line
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
