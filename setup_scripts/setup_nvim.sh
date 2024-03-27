@@ -7,6 +7,7 @@ cd ~
 sudo rm -rf /usr/bin/nvim
 
 if [[ $OSTYPE == 'darwin'* ]]; then
+	brew install wget
 	brew install neovim
 	brew install ripgrep
 	brew install fontconfig
