@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 cd $HOME
 
 function config {
@@ -10,16 +12,14 @@ function add_to_config_file {
 }
 
 BASHRC=$HOME/.bashrc
-if test -f "$BASHRC"; then
-    echo "Appending config to $BASHRC"
-    add_to_config_file $BASHRC
-fi
+touch "$BASHRC"
+echo "Appending config to $BASHRC"
+add_to_config_file $BASHRC
 
 ZSHRC=$HOME/.zshrc
-if test -f "$ZSHRC"; then
-    echo "Appending config to $ZSHRC"
-    add_to_config_file $ZSHRC
-fi
+touch "$ZSHRC"
+echo "Appending config to $ZSHRC"
+add_to_config_file $ZSHRC
 
 echo ".cfg" >> .gitignore
 

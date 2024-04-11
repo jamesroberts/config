@@ -13,6 +13,12 @@ cat ~/.ssh/id_ed25519.pub
 echo -e "\nAdd above to: https://github.com/settings/keys"
 ```
 
+If on a new Mac OS image, install dev tools:
+
+```
+xcode-select --install
+```
+
 Clone and setup the repo:
 
 ```bash
