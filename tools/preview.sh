@@ -67,8 +67,13 @@ OFFSET=$(($LINES / 2))
 LOWER_RANGE=$(($CENTER-$OFFSET))
 UPPER_RANGE=$(($CENTER+$OFFSET))
 
+echo "zxzx $OFFSET, $LOWER_RANGE, $UPPER_RANGE"
+
 if [ "$LOWER_RANGE" -lt 0 ]; then
     LOWER_RANGE=0
+fi
+if [ "$UPPER_RANGE" -lt $LINES ]; then
+    UPPER_RANGE=$LINES
 fi
 
 if [ -z "$FZF_PREVIEW_COMMAND" ] && [ "${BATNAME:+x}" ]; then
