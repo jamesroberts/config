@@ -1,4 +1,5 @@
 return {
+    { "vhyrro/luarocks.nvim", priority = 1000, config = true },
     { 'numToStr/Comment.nvim',          opts = {} },
     { 'folke/which-key.nvim',           opts = {} },
     { 'stevearc/dressing.nvim',         opts = {} },

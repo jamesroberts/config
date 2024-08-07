@@ -16,10 +16,7 @@ local configure = function()
             ['<C-d>'] = cmp.mapping.scroll_docs(-4),
             ['<C-u>'] = cmp.mapping.scroll_docs(4),
             ['<C-Space>'] = cmp.mapping.complete {},
-            ['<CR>'] = cmp.mapping.confirm {
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-            },
+            ['<C-y>'] = cmp.mapping.confirm { select = true },
             ['<Tab>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.select_next_item()
@@ -51,11 +48,30 @@ return {
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
-            'L3MON4D3/LuaSnip',
             'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
-            'rafamadriz/friendly-snippets',
+            {
+                'L3MON4D3/LuaSnip',
+                build = (function()
+                    -- Build Step is needed for regex support in snippets.
+                    -- This step is not supported in many windows environments.
+                    -- Remove the below condition to re-enable on windows.
+                    if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+                        return
+                    end
+                    return 'make install_jsregexp'
+                end)(),
+
+                dependencies = {
+                    {
+                      'rafamadriz/friendly-snippets',
+                      config = function()
+                        require('luasnip.loaders.from_vscode').lazy_load()
+                      end,
+                    },
+                },
+            },
         },
         config = configure
     }

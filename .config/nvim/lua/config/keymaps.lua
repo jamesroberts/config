@@ -76,6 +76,13 @@ map("n", "<leader>qfp", vim.cmd.cnext, { desc = "Next quickfix" })
 -- Formatting
 map({ "n", "v" }, "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
 
+-- Who needs shift?
+map({ "n", "v" }, "yi9", "yi(")
+map({ "n", "v" }, "yi0", "yi)")
+map({ "n", "v" }, "vi9", "vi(")
+map({ "n", "v" }, "vi0", "vi)")
+
+
 -- Abbrevs
 vim.cmd("cnoreabbrev W! w!")
 vim.cmd("cnoreabbrev Q! q!")
@@ -119,14 +126,14 @@ map("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- document existing key chains
-require('which-key').register {
-    ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-    ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-    ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-    ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-    ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-    ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-    ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+require('which-key').add {
+    { '<leader>c', group = '[C]ode' },
+    { '<leader>d', group = '[D]ocument' },
+    { '<leader>r', group = '[R]ename' },
+    { '<leader>s', group = '[S]earch' },
+    { '<leader>w', group = '[W]orkspace' },
+    { '<leader>t', group = '[T]oggle' },
+    { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
 }
 
 local search_neovim_files = function()

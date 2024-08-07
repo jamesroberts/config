@@ -17,8 +17,8 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 else
     rm -f nvim.appimage
     sudo rm -rf /squashfs-root/
-
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    curl -LO https://github.com/neovim/neovim-releases/releases/download/v0.10.1/nvim.appimage
+    # curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 
     chmod u+x nvim.appimage
 

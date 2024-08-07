@@ -117,3 +117,5 @@ if vim.fn.has("nvim-0.10") == 1 then
 end
 
 vim.g.markdown_recommended_style = 0
+
+vim.g.have_nerd_font = true
