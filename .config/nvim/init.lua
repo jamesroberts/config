@@ -4,6 +4,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -17,12 +18,8 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 
--- All config is in 'lua/config'
+-- All config is in 'lua/core'
 require('lazy').setup({
-    { import = 'config.plugins' },
-    { import = 'config.colorscheme' },
+    { import = 'core' },
+    { import = 'plugins' },
 }, {})
-
-require("config.options")
-require("config.keymaps")
-require("config.commands")
